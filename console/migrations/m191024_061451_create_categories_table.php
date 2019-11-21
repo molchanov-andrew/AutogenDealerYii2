@@ -18,8 +18,10 @@ class m191024_061451_create_categories_table extends Migration
         }
         $this->createTable('{{%categories}}', [
             'id' => $this->primaryKey(),
+            'brand_id' => $this->integer()->notNull(),
             'category' => $this->string()->notNull(),
             'category_alter' => $this->string()->notNull(),
+            'category_picture' => $this->string(),
         ], $tableOptions);
     }
 

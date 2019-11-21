@@ -20,6 +20,7 @@ class m191021_054103_create_brand_table extends Migration
             'id' => $this->primaryKey(),
             'brand_name' => $this->string(20)->notNull(),
             'country' => $this->string(20)->notNull(),
+            'logo' => $this->string(),
         ], $tableOptions);
     }
 

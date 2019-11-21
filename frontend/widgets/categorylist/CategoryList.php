@@ -12,6 +12,7 @@ public function run()
 {
     $model_categories = new Categories();
     $categoryList = $model_categories->getCategories();
+
     return $this->render('categories', ['categoryList'=>$categoryList]);
 }
 }

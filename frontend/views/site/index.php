@@ -1,12 +1,13 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $model app\modules\brands\models
- * @model_brand app\modules\brands\models\Brand
+/* @var $this yii\web\View
+ * @model_brand app\models\Brand
  */
 $this->title = 'AutoGen';
 
-use  yii\helpers\Html;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use app\modules\categories\models\Categories;
 
 ?>
 
@@ -20,11 +21,12 @@ use  yii\helpers\Html;
     <section class="brands">
         <div class="wrapper">
             <div class="brands_wrapper">
-                <div class="brand"><img src="img/gaz.png" alt=""></div>
-                <div class="brand"><img src="img/Belarus.png" alt=""></div>
-                <div class="brand"><img src="img/maz.png" alt=""></div>
-                <div class="brand"><img src="img/uaz.png" alt=""></div>
-                <div class="brand"><img src="img/paz.png" alt=""></div>
+                <?php /** @var app\models\Brand $model_brand */
+                foreach ($model_brand as $brand): ?>
+                <a href="">
+                    <div class="brand"><?= Html::img($brand->getImage(), ['alt' => $brand['brand_name']]) ?></div>
+                </a>
+                <?php endforeach;?>
             </div>
         </div>
     </section>
@@ -32,72 +34,19 @@ use  yii\helpers\Html;
         <h1 class="title">Категории товаров</h1>
         <div class="wrapper">
             <div class="category_wrapper">
-                <div class="category first">
-                    <div class="category_bg">
-                        <div class="hide_nohover">
-                            <a href="#">В каталог</a>
+                <?php foreach (Categories::find()->asArray()->all() as $category): ?>
+                    <div class="category">
+                        <div class="category_bg">
+                            <div class="hide_nohover">
+                                <a href="<?= Url::to(["/categories/category/category-page", 'id' => $category['id']])?>">В каталог</a>
+                            </div>
+                        </div>
+                        <div class="category_title">
+                            <div class="ct_title"><?= $category['category'] ?></div>
+                            <div class="_ct_count">100</div>
                         </div>
                     </div>
-                    <div class="category_title">
-                        <div class="ct_title">Автобусы</div>
-                        <div class="_ct_count">100</div>
-                    </div>
-                </div>
-                <div class="category second">
-                    <div class="category_bg">
-                        <div class="hide_nohover">
-                            <a href="#">В каталог</a>
-                        </div>
-                    </div>
-                    <div class="category_title">
-                        <div class="ct_title">Сельхозтехника</div>
-                        <div class="_ct_count">48</div>
-                    </div>
-                </div>
-                <div class="category third">
-                    <div class="category_bg">
-                        <div class="hide_nohover">
-                            <a href="#">В каталог</a>
-                        </div>
-                    </div>
-                    <div class="category_title">
-                        <div class="ct_title">Навесное оборудование</div>
-                        <div class="_ct_count">32</div>
-                    </div>
-                </div>
-                <div class="category fourth">
-                    <div class="category_bg">
-                        <div class="hide_nohover">
-                            <a href="#">В каталог</a>
-                        </div>
-                    </div>
-                    <div class="category_title">
-                        <div class="ct_title">Строительная техника</div>
-                        <div class="_ct_count">80</div>
-                    </div>
-                </div>
-                <div class="category fifth">
-                    <div class="category_bg">
-                        <div class="hide_nohover">
-                            <a href="#">В каталог</a>
-                        </div>
-                    </div>
-                    <div class="category_title">
-                        <div class="ct_title">Грузовые автомобили</div>
-                        <div class="_ct_count">160</div>
-                    </div>
-                </div>
-                <div class="category sixth">
-                    <div class="category_bg">
-                        <div class="hide_nohover">
-                            <a href="#">В каталог</a>
-                        </div>
-                    </div>
-                    <div class="category_title">
-                        <div class="ct_title">Спецтехника</div>
-                        <div class="_ct_count">240</div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>

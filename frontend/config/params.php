@@ -1,7 +1,7 @@
 <?php
 return [
-    'adminEmail' => 'admin@example.com',
+    'adminEmail' => 'andy_admin@gmail.com',
     'maxFileSize' => 1024 * 1024 * 2, // 2 megabites
-    'storagePath' => '@frontend/web/uploads/',
-    'storageUri' => '/uploads/',
+    'storagePath' => '/img/uploads/',
+    'storageUri' => 'http://autogen.admin.com/uploads/',
 ];

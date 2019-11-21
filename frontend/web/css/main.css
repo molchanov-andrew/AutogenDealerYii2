@@ -1401,3 +1401,25 @@ font-size: 16px;
 		margin:0 20px;
 	}
 }
+@media(min-width: 1100px) and (max-width: 1400px){
+	.catalogue_item{
+		max-width: 300px;
+	}
+	.card_item_descr{
+		max-width: 615px;
+	}
+	.card_item_descr .item_phone_call{
+		font-size: 19px;
+		width: 290px;
+		height: 50px;
+		line-height: 50px;
+	}
+	.item_phone .item_phone_text{
+		font-size: 15px;
+	}
+	.card_item_descr .item_phone_call::before{
+		width: 30px;
+		height: 30px;
+		background-size: contain;
+	}
+}

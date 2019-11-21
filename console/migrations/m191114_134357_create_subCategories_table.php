@@ -12,10 +12,12 @@ class m191114_134357_create_subCategories_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('{{%subCategories}}', [
+        $this->createTable('{{%sub_categories}}', [
             'id' => $this->primaryKey(),
             'category_id' => $this->integer()->notNull(),
-            'sub_categories' => $this->text()->notNull(),
+            'sub_category' => $this->string()->notNull(),
+            'sub_category_alter' => $this->string()->notNull(),
+
         ]);
     }
 
@@ -24,6 +26,6 @@ class m191114_134357_create_subCategories_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%subCategories}}');
+        $this->dropTable('{{%sub_categories}}');
     }
 }

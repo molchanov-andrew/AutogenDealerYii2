@@ -39,4 +39,9 @@ class Categories extends \yii\db\ActiveRecord
     {
         return $this->find()->asArray()->all();
     }
+    public function getSubcategories()
+    {
+        return $this->hasMany(SubCategories::class,['category_id'=>'id'])->asArray()->all();
+    }
+
 }
