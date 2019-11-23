@@ -4,7 +4,7 @@ use yii\helpers\Html;
 app\modules\categories\models\Categories $category
 */
 
-$this->title = 'Subcategory';
+$this->title = 'Сategory';
 /** @var string $category */
 $this->params['breadcrumbs'][] = $category->category;
 $count = 0;
@@ -15,33 +15,21 @@ $count = 0;
         <div class="wrapper">
             <aside class="sidebar">
 
-                <?php foreach ($category->getSubcategories() as $subcategory):?>
+                <?php foreach ($category->getSubcategoriesList() as $subcategory):?>
                 <div class="categories_catalogue <?= ($count==0) ? "categorie_active" : ""; $count++?>">
                     <div class="category_visible">
-                        <div class="ctv_title"><?=$subcategory["sub_category"]?></div>
-                        <div class="ctv_count"><?= count($category->getSubcategories())?></div>
+
+                        <div class="ctv_title"><?=$subcategory["sub_ctgry"]?></div>
+
+                        <div class="ctv_count"></div>
                     </div>
                     <div class="category_change">
+<!--                        --><?php //foreach ():?>
                         <div class="category_value">
                             <input class='checkbox_value' checked="checked" type="checkbox" id="value1">
                             <label for="value1">Товар 1 (25)</label>
                         </div>
-                        <div class="category_value">
-                            <input class='checkbox_value' type="checkbox" id="value2">
-                            <label for="value2">Товар 2 (212)</label>
-                        </div>
-                        <div class="category_value">
-                            <input class='checkbox_value' type="checkbox" id="value3">
-                            <label for="value3">Товар 3 (123)</label>
-                        </div>
-                        <div class="category_value">
-                            <input class='checkbox_value' type="checkbox" id="value4">
-                            <label for="value4">Товар 4 (12)</label>
-                        </div>
-                        <div class="category_value">
-                            <input class='checkbox_value' type="checkbox" id="value5">
-                            <label for="value5">Товар 5 (12)</label>
-                        </div>
+<!--                        --><?php //endforeach;?>
                     </div>
                 </div>
                 <?php endforeach;?>

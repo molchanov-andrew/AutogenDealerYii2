@@ -39,9 +39,13 @@ class Categories extends \yii\db\ActiveRecord
     {
         return $this->find()->asArray()->all();
     }
-    public function getSubcategories()
+    public function getSubcategoriesList()
     {
-        return $this->hasMany(SubCategories::class,['category_id'=>'id'])->asArray()->all();
+      return  $this->hasMany(SubCategories::class,['category_id'=>'id'])->groupBy('sub_ctgry')->all();
+    }
+    public function getSubcategoriesCount()
+    {
+        return $this->hasMany(SubCategories::class,['category_id'=>'id'])->count();
     }
 
 }
