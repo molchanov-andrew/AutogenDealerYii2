@@ -34,7 +34,9 @@ use app\modules\categories\models\Categories;
         <h1 class="title">Категории товаров</h1>
         <div class="wrapper">
             <div class="category_wrapper">
-                <?php foreach (Categories::find()->asArray()->all() as $category): ?>
+
+                <?php foreach (Categories::find()->all() as $category): ?>
+
                     <div class="category">
                         <div class="category_bg">
                             <div class="hide_nohover">

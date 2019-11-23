@@ -12,7 +12,8 @@ class CategoryController extends Controller
     {
         $category = Categories::findOne(['id'=>$id]);
 
-        return $this->render('subcategory',['category'=>$category,]);
+
+        return $this->render('category',['category'=>$category]);
     }
 
 
