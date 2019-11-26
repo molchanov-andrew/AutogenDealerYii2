@@ -2,8 +2,7 @@
 
 namespace frontend\widgets\categorylist;
 
-use app\modules\brands\models\Brand;
-use app\modules\categories\models\Categories;
+use common\models\Categories;
 use yii\base\Widget;
 
 class CategoryList extends Widget

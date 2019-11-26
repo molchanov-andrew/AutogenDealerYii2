@@ -3,16 +3,16 @@
 use yii\helpers\Html;
 
 /*
-@var $category app\modules\categories\models\Categories
+@var $category common\models\Categories
 */
 
 $this->title = 'Сategory';
 
-/** @var app\modules\categories\models\Categories $category */
+/** @var $category common\models\Categories
+ * @var $subCategoryByBrand common\models\SubCategory
+ * @var $subCategory common\models\SubCategory
+ */
 $this->params['breadcrumbs'][] = $category->category;
-//$count = 0;
-//($count == 0) ? "categorie_active" : "";
-//$count++
 
 ?>
 <main>
@@ -20,27 +20,27 @@ $this->params['breadcrumbs'][] = $category->category;
         <div class="wrapper">
             <aside class="sidebar">
 
-                <?php foreach ($category->getSubCategoriesList() as $subCategory):?>
+                <?php foreach ($category->getSubCategoriesList() as $subCategory): ?>
 
-                <div class="categories_catalogue">
-                    <div class="category_visible">
+                    <div class="categories_catalogue">
+                        <div class="category_visible">
 
-                        <div class="ctv_title"><?= $subCategory->sub_category ?></div>
-                        <div class="ctv_count"><?= $subCategory->getCountSubcategory() ?></div>
+                            <div class="ctv_title"><?= $subCategory->sub_category ?></div>
+                            <div class="ctv_count"><?= $subCategory->getCountSubcategory() ?></div>
+                        </div>
+                        <div class="category_change">
+                            <?php foreach ($subCategory->getSubcategoriesBrandSorted() as $subCategoryByBrand): ?>
+                                <!--                            <div class="category_value">-->
+                                <!--                                <input class='checkbox_value' checked="checked" type="checkbox" id="value1">-->
+                                <!--                                <label for="value1">--><!--</label>-->
+                                <!--                            </div>-->
+                                <div class="category_value">
+                                    <?= Html::a($subCategoryByBrand->getSubCategoryBrandName()->brand_name, ['/categories/subcategories/brand-choice', 'brand_id' => $subCategoryByBrand->getSubCategoryBrandName()->id, 'category_id' => $category->id]) ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
-                    <div class="category_change">
-                        <?php foreach ($subCategory->getSubcategoriesBrandSorted() as $subCategoryByBrand):?>
-<!--                            <div class="category_value">-->
-<!--                                <input class='checkbox_value' checked="checked" type="checkbox" id="value1">-->
-<!--                                <label for="value1">--><!--</label>-->
-<!--                            </div>-->
-                            <div class="category_value">
-                                <?= Html::a($subCategoryByBrand->getSubCategoryBrandName()->brand_name,['/categories/subcategories/brand-choice', 'brand_id' => $subCategoryByBrand->getSubCategoryBrandName()->id, 'category_id' => $category->id]) ?>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                <?php endforeach;?>
+                <?php endforeach; ?>
 
 
                 <div class="category_littre">
@@ -121,16 +121,16 @@ $this->params['breadcrumbs'][] = $category->category;
                     </div>
                 </div>
                 <div class="main_catalogue">
-                    <?php foreach ($category->getSubCategoriesList() as $subCategory):?>
-                    <div class="catalogue_item">
-                        <div class="ct_image"><?= Html::img($subCategory->getImage(), ['alt'=>'img'])?></div>
-                        <div class="catalogue_descr">
-                            <p><?= Html::encode($subCategory->sub_category)?></p>
-                            <p>от 10 000 грн</p>
+                    <?php foreach ($category->getSubCategoriesList() as $subCategory): ?>
+                        <div class="catalogue_item">
+                            <div class="ct_image"><?= Html::img($subCategory->getImage(), ['alt' => 'img']) ?></div>
+                            <div class="catalogue_descr">
+                                <p><?= Html::encode($subCategory->sub_category) ?></p>
+                                <p>от 10 000 грн</p>
+                            </div>
+                            <div class="catalogue_button"><a href="#">Детальнее</a></div>
                         </div>
-                        <div class="catalogue_button"><a href="#">Детальнее</a></div>
-                    </div>
-                    <?php endforeach;?>
+                    <?php endforeach; ?>
                 </div>
             </div>
 

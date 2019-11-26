@@ -3,7 +3,6 @@
 namespace frontend\modules\categories\controllers;
 
 use common\models\Categories;
-//use frontend\modules\categories\models\Categories;
 use yii\web\Controller;
 
 

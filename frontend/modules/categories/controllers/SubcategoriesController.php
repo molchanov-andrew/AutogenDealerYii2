@@ -2,7 +2,7 @@
 
 namespace frontend\modules\categories\controllers;
 
-use app\modules\categories\models\Categories;
+use common\models\Categories;
 
 class SubcategoriesController extends \yii\web\Controller
 {

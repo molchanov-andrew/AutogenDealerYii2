@@ -7,7 +7,7 @@ $this->title = 'AutoGen';
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\modules\categories\models\Categories;
+use common\models\Categories;
 
 ?>
 
