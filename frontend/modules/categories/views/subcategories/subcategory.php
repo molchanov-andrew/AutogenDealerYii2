@@ -1,13 +1,18 @@
 <?php
+
 use yii\helpers\Html;
+use yii\helpers\Url;
+
 /*
 app\modules\categories\models\Categories $category
 */
 
-$this->title = 'Subcategory';
+$this->title = 'Сategory';
 /** @var string $category */
 $this->params['breadcrumbs'][] = $category->category;
-$count = 0;
+//$count = 0;
+//($count == 0) ? "categorie_active" : "";
+//$count++
 
 ?>
 <main>
@@ -15,37 +20,28 @@ $count = 0;
         <div class="wrapper">
             <aside class="sidebar">
 
-                <?php foreach ($category->getSubcategories() as $subcategory):?>
-                <div class="categories_catalogue <?= ($count==0) ? "categorie_active" : ""; $count++?>">
+                <?php foreach ($category->getSubCategoriesList() as $subCategory):?>
+
+                <div class="categories_catalogue">
                     <div class="category_visible">
-                        <div class="ctv_title"><?=$subcategory["sub_category"]?></div>
-                        <div class="ctv_count"><?= count($category->getSubcategories())?></div>
+
+                        <div class="ctv_title"><?= $subCategory["sub_ctgry"] ?></div>
+
+                        <div class="ctv_count"><?= $subCategory->getCountSubcategory() ?></div>
                     </div>
                     <div class="category_change">
-                        <div class="category_value">
-                            <input class='checkbox_value' checked="checked" type="checkbox" id="value1">
-                            <label for="value1">Товар 1 (25)</label>
-                        </div>
-                        <div class="category_value">
-                            <input class='checkbox_value' type="checkbox" id="value2">
-                            <label for="value2">Товар 2 (212)</label>
-                        </div>
-                        <div class="category_value">
-                            <input class='checkbox_value' type="checkbox" id="value3">
-                            <label for="value3">Товар 3 (123)</label>
-                        </div>
-                        <div class="category_value">
-                            <input class='checkbox_value' type="checkbox" id="value4">
-                            <label for="value4">Товар 4 (12)</label>
-                        </div>
-                        <div class="category_value">
-                            <input class='checkbox_value' type="checkbox" id="value5">
-                            <label for="value5">Товар 5 (12)</label>
-                        </div>
+                        <?php foreach ($subCategory->getSubCategories() as $subCategoryByBrand):?>
+<!--                            <div class="category_value">-->
+<!--                                <input class='checkbox_value' checked="checked" type="checkbox" id="value1">-->
+<!--                                <label for="value1">--><!--</label>-->
+<!--                            </div>-->
+                            <div class="category_value">
+                                <?= Html::a($subCategoryByBrand->getSubCategoryBrand()->brand_name,['/categories/subcategories/brand-choice', 'brand_id' => $subCategoryByBrand->getSubCategoryBrand()->id, 'category_id' => $category->id]) ?>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <?php endforeach;?>
-
 
 
                 <div class="category_littre">

@@ -2,8 +2,7 @@
 
 namespace frontend\controllers;
 
-use app\models\Brand;
-use app\modules\categories\models\Categories;
+use common\models\Brand;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;

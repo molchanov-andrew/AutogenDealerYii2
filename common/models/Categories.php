@@ -1,9 +1,8 @@
 <?php
 
-namespace app\modules\categories\models;
+namespace common\models;
 
 use Yii;
-use common\models\SubCategory;
 
 
 /**
@@ -14,8 +13,8 @@ use common\models\SubCategory;
  */
 class Categories extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
+    /*
+     {@inheritdoc}
      */
     public static function tableName()
     {

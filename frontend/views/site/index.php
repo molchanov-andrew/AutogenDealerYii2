@@ -12,7 +12,6 @@ use app\modules\categories\models\Categories;
 ?>
 
 <main>
-
     <section class="main_banner">
         <a href="#">
             <div class="text_block_banner">Спецтехника</div>
@@ -22,6 +21,7 @@ use app\modules\categories\models\Categories;
         <div class="wrapper">
             <div class="brands_wrapper">
                 <?php /** @var app\models\Brand $model_brand */
+                /** @var app\models\Brand $brand */
                 foreach ($model_brand as $brand): ?>
                 <a href="">
                     <div class="brand"><?= Html::img($brand->getImage(), ['alt' => $brand['brand_name']]) ?></div>
@@ -37,17 +37,18 @@ use app\modules\categories\models\Categories;
 
                 <?php foreach (Categories::find()->all() as $category): ?>
 
-                    <div class="category">
-                        <div class="category_bg">
+                        <?= Html::beginTag('div',['class'=>'category'])?>
+                        <div class="category_bg" <?='style="background-image: url('.Url::to($category->getImage()).')"'?>>
                             <div class="hide_nohover">
                                 <a href="<?= Url::to(["/categories/category/category-page", 'id' => $category['id']])?>">В каталог</a>
                             </div>
                         </div>
                         <div class="category_title">
                             <div class="ct_title"><?= $category['category'] ?></div>
-                            <div class="_ct_count">100</div>
+                            <div class="_ct_count"><?= $category->getSubCategoriesItemCount()?></div>
                         </div>
-                    </div>
+                        <?= Html::endTag('div')?>
+
                 <?php endforeach; ?>
             </div>
         </div>
