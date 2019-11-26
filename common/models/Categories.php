@@ -3,18 +3,21 @@
 namespace common\models;
 
 use Yii;
-
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "categories".
  *
  * @property int $id
+ * @property int $brand_id
  * @property string $category
+ * @property string $category_alter
  */
-class Categories extends \yii\db\ActiveRecord
+class Categories extends ActiveRecord
 {
-    /*
-     {@inheritdoc}
+    public $categoryPicture;
+    /**
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -26,7 +29,12 @@ class Categories extends \yii\db\ActiveRecord
      */
     public function rules()
     {
-        return [[['category'], 'required'], [['category'], 'string', 'max' => 30],];
+        return [
+            [['brand_id', 'category', 'category_alter'], 'required'],
+            [['brand_id'], 'integer'],
+            [['category', 'category_alter'], 'string', 'max' => 255],
+            [['categoryPicture'], 'image', 'extensions' => ['jpg', 'png'], 'checkExtensionByMimeType' => true],
+        ];
     }
 
     /**
@@ -34,8 +42,15 @@ class Categories extends \yii\db\ActiveRecord
      */
     public function attributeLabels()
     {
-        return ['id' => 'ID', 'category' => 'Category',];
+        return [
+            'id' => 'ID',
+            'brand_id' => 'Бренд',
+            'category' => 'Категория',
+            'category_alter' => 'Категория (eng)',
+            'category_picture' => 'Категория (изображение)'
+        ];
     }
+
 
     public function getCategories()
     {
