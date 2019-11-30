@@ -42,7 +42,6 @@ $this->params['breadcrumbs'][] = $category->category;
                     </div>
                 <?php endforeach; ?>
 
-
                 <div class="category_littre">
                     <div class="category_visible">
                         <div class="ctv_title">Фильтр по литражу</div>
