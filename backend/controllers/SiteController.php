@@ -13,7 +13,6 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use backend\models\LoginForm;
-
 /**
  * Site controller
  */
@@ -22,9 +21,10 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-//    public function behaviors()
-//    {
-//        return [
+    public function behaviors()
+    {
+
+        return [
 //            'access' => [
 //                'class' => AccessControl::className(),
 //                'rules' => [
@@ -45,8 +45,8 @@ class SiteController extends Controller
 //                    'logout' => ['post'],
 //                ],
 //            ],
-//        ];
-//    }
+        ];
+    }
 
     /**
      * {@inheritdoc}
