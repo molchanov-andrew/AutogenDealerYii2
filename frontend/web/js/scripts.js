@@ -5,10 +5,11 @@ $(document).ready(function(){
 	});
 		
 	$(".menu_item").click(function(){
-		if($(".menu_item .hide_show").hasClass("active")){
-			$(".menu_item .hide_show").removeClass("active");
-			$(".menu_item .hide_show").slideUp();
+		if($(this).find(".hide_show").hasClass("active")){
+			$(this).find(".hide_show").slideUp();
+			$(this).find(".hide_show").removeClass("active");
 		}else{
+			$(".menu_item .hide_show").slideUp().removeClass("active");
 			$(this).find(".hide_show").addClass("active").slideDown();
 		}
 		
@@ -56,7 +57,7 @@ $(document).ready(function(){
 		
 	
 	$(".categories_catalogue").click(function(){
-		if($(".categories_catalogue").hasClass("categorie_active")){
+		if($(this).hasClass("categorie_active")){
 			$(this).find(".category_change").slideUp(300);
 			$(this).removeClass("categorie_active");
 		}else{

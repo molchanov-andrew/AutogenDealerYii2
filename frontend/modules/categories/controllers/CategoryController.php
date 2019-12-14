@@ -14,6 +14,4 @@ class CategoryController extends Controller
         return $this->render('category',['category'=>$category,]);
     }
 
-
-
 }

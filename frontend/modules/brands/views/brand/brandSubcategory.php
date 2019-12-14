@@ -1,17 +1,19 @@
 <?php
+/*
+ * $model common\models\Bus
+ * @var $category common\models\Categories
+ * */
 
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-/**
- * array $subCategoryBrandSorted  common\models\Products
- */
+$this->title = 'Сategory';
 
-$this->title = 'Подкатегория';
-/** @var string $category */
 $this->params['breadcrumbs'][] = $category->category;
+
 ?>
 <main>
+
     <section class="sidebar_and_catalogue">
         <div class="wrapper">
             <aside class="sidebar">
@@ -22,13 +24,14 @@ $this->params['breadcrumbs'][] = $category->category;
                         <div class="category_visible">
 
                             <div class="ctv_title"><?= $subCategory->sub_category ?></div>
-                            <div class="ctv_count"><?= $subCategory->getCountSubcategory() ?></div>
+
+                            <div class="ctv_count"><?= $subCategory->getCountSubcategoryItems() ?></div>
                         </div>
                         <div class="category_change">
-                            <?php foreach ($subCategory->getSubcategoriesBrandSorted() as $subCategoryByBrand): ?>
+                            <?php foreach ($subCategory->getSubcategoriesBrandSorted() as $brand): ?>
                                 <div class="category_value">
                                     <input class='checkbox_value' checked="checked" type="checkbox" id="value1">
-                                    <label for="value1"><?= Html::a(Html::encode($subCategoryByBrand->getSubCategoryBrandName()->brand_name), \yii\helpers\Url::to(['/categories/subcategories/brand-choice', 'category_id' => $subCategoryByBrand->category_id, 'brand_id' => $subCategoryByBrand->brand_id, 'subcategory_id' => $subCategoryByBrand->id])) ?></label>
+                                    <label for="value1"><?= Html::a(Html::encode($brand->getBrand()->brand_name), Url::to(['/brands/brand/brand-sorted', 'category_id' => $brand->category_id, 'brand_id' => $brand->brand_id, 'subcategory_id' => $brand->id])) ?></label>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -114,12 +117,12 @@ $this->params['breadcrumbs'][] = $category->category;
                 </div>
                 <div class="main_catalogue">
 
-                    <?php foreach ($subCategoryBrandSorted as $product): ?>
+                    <?php foreach ($model as $item): ?>
+
                         <div class="catalogue_item">
-                            <div class="ct_image"><?= Html::img($product->getImage(), ['alt' => 'noIimg']) ?></div>
+                            <div class="ct_image"><?= Html::img($item->getImage(), ['alt' => 'img']) ?></div>
                             <div class="catalogue_descr">
-                                <p><?= Html::encode($product->getSubCategoryName()->sub_category); ?>
-                                </p>
+                                <p><?= Html::encode($item->getSubCategory()->sub_category) ?></p>
                                 <p>от 10 000 грн</p>
                             </div>
                             <div class="catalogue_button"><a href="#">Детальнее</a></div>
@@ -131,4 +134,6 @@ $this->params['breadcrumbs'][] = $category->category;
         </div>
     </section>
 </main>
+
+
 

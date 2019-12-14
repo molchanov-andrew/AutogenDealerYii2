@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -29,7 +30,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => Yii::$app->name = 'Autogen',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -47,6 +48,7 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Брэнд', 'url' => ['/brand/index']];
         $menuItems[] = ['label' => 'Категория', 'url' => ['/category/index']];
         $menuItems[] = ['label' => 'Подкатегория', 'url' => ['/subcategory/index']];
+        $menuItems[] = ['label' => 'Товар', 'url' => ['/product/index']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

@@ -11,6 +11,9 @@ return [
         ],
         'storage' =>[
             'class' => 'common\components\Storage'
+        ],
+        'choosetable' =>[
+            'class' => 'common\components\ChooseTable'
         ]
     ],
 ];

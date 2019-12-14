@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\widgets\Pjax;
 
 /*
 @var $category common\models\Categories
@@ -9,39 +11,30 @@ use yii\helpers\Html;
 $this->title = 'Сategory';
 
 /** @var $category common\models\Categories
- * @var $subCategoryByBrand common\models\SubCategory
- * @var $subCategory common\models\SubCategory
  */
 $this->params['breadcrumbs'][] = $category->category;
-
 ?>
 <main>
     <section class="sidebar_and_catalogue">
         <div class="wrapper">
             <aside class="sidebar">
-
                 <?php foreach ($category->getSubCategoriesList() as $subCategory): ?>
-
                     <div class="categories_catalogue">
                         <div class="category_visible">
-
                             <div class="ctv_title"><?= $subCategory->sub_category ?></div>
-                            <div class="ctv_count"><?= $subCategory->getCountSubcategory() ?></div>
+                            <div class="ctv_count"><?= $subCategory->getCountSubcategoryItems() ?></div>
                         </div>
                         <div class="category_change">
-                            <?php foreach ($subCategory->getSubcategoriesBrandSorted() as $subCategoryByBrand): ?>
-                                <!--                            <div class="category_value">-->
-                                <!--                                <input class='checkbox_value' checked="checked" type="checkbox" id="value1">-->
-                                <!--                                <label for="value1">--><!--</label>-->
-                                <!--                            </div>-->
+
+                            <?php foreach ($subCategory->getSubcategoriesBrandSorted() as $brand): ?>
                                 <div class="category_value">
-                                    <?= Html::a($subCategoryByBrand->getSubCategoryBrandName()->brand_name, ['/categories/subcategories/brand-choice', 'brand_id' => $subCategoryByBrand->getSubCategoryBrandName()->id, 'category_id' => $category->id]) ?>
+                                    <input class='checkbox_value' checked="checked" type="checkbox" id="value1">
+                                    <label for="value1"><?= Html::a(Html::encode($brand->getBrand()->brand_name), Url::to(['/brands/brand/brand-sorted', 'category_id' => $brand->category_id, 'brand_id' => $brand->brand_id, 'subcategory_id' => $brand->subcategory_id])) ?></label>
                                 </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
-
                 <div class="category_littre">
                     <div class="category_visible">
                         <div class="ctv_title">Фильтр по литражу</div>
@@ -119,6 +112,7 @@ $this->params['breadcrumbs'][] = $category->category;
                         </div>
                     </div>
                 </div>
+
                 <div class="main_catalogue">
                     <?php foreach ($category->getSubCategoriesList() as $subCategory): ?>
                         <div class="catalogue_item">
@@ -132,8 +126,8 @@ $this->params['breadcrumbs'][] = $category->category;
                     <?php endforeach; ?>
                 </div>
             </div>
-
         </div>
     </section>
+
 </main>
 
