@@ -1,7 +1,8 @@
 <?php
 /*
  * $model common\models\Bus
- * @var $category common\models\Categories
+ * $category common\models\Categories
+ * @var $subcategory name of Subcategory
  * */
 
 use yii\helpers\Html;
@@ -9,7 +10,13 @@ use yii\helpers\Url;
 
 $this->title = 'Сategory';
 
-$this->params['breadcrumbs'][] = $category->category;
+$this->params['breadcrumbs'][] = [
+        'label' => $category->category,
+        'url' => ['/categories/category/category-page', 'id' => $category->id],
+];
+$this->params['breadcrumbs'][] = $subcategory->sub_category;
+
+//$this->params['breadcrumbs'][] = $model->getSubCategory($subcategory_id);
 
 ?>
 <main>
@@ -31,7 +38,7 @@ $this->params['breadcrumbs'][] = $category->category;
                             <?php foreach ($subCategory->getSubcategoriesBrandSorted() as $brand): ?>
                                 <div class="category_value">
                                     <input class='checkbox_value' checked="checked" type="checkbox" id="value1">
-                                    <label for="value1"><?= Html::a(Html::encode($brand->getBrand()->brand_name), Url::to(['/brands/brand/brand-sorted', 'category_id' => $brand->category_id, 'brand_id' => $brand->brand_id, 'subcategory_id' => $brand->id])) ?></label>
+                                    <label for="value1"><?= Html::a(Html::encode($brand->getBrand()->brand_name), Url::to(['/brands/brand/brand-sorted', 'category_id' => $brand->category_id, 'brand_id' => $brand->brand_id, 'subcategory_id' => $brand->subcategory_id])) ?></label>
                                 </div>
                             <?php endforeach; ?>
                         </div>

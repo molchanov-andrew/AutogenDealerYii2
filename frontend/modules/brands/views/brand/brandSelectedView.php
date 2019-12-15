@@ -1,19 +1,17 @@
 <?php
+/*
+ * @var $brandId*/
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\Pjax;
 use frontend\widgets\brandList\BrandList;
 
-/*
-@var $category common\models\Categories
-*/
 
-$this->title = 'Сategory';
+$this->title = 'Бренд';
 
 /** @var $category common\models\Categories
  */
-$this->params['breadcrumbs'][] = $category->category;
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <main>
     <section class="sidebar_and_catalogue">
@@ -115,4 +113,6 @@ $this->params['breadcrumbs'][] = $category->category;
     </section>
 
 </main>
+
+
 
