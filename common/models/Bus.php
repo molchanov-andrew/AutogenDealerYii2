@@ -82,8 +82,8 @@ class Bus extends \yii\db\ActiveRecord
         return $this->hasOne(Brand::class, ['id' => 'brand_id'])->one();
     }
 
-//    public function getCategoryName()
-//    {
-//        return $this->hasOne(Categories::class, ['id' => 'category_id'])->one();
-//    }
+    public function getSubcategoryProductList($categoryId, $subcategoryId)
+    {
+        return $this->find()->where(['category_id'=>$categoryId, 'subcategory_id'=>$subcategoryId])->all();
+    }
 }

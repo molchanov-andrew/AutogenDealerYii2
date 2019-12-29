@@ -1,40 +1,42 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\Url;
+use yii\widgets\Pjax;
+use frontend\widgets\brandList\BrandList;
 
-/**
- * array $subCategoryBrandSorted  common\models\Products
+/*
+@var $category common\models\Categories
+@var $subcategoryProductList
+*/
+
+$this->title = 'Сategory';
+
+/** @var $category common\models\Categories
  */
-
-$this->title = 'Подкатегория';
-/** @var string $category */
 $this->params['breadcrumbs'][] = $category->category;
 ?>
+
 <main>
     <section class="sidebar_and_catalogue">
         <div class="wrapper">
             <aside class="sidebar">
-
                 <?php foreach ($category->getSubCategoriesList() as $subCategory): ?>
-
                     <div class="categories_catalogue">
                         <div class="category_visible">
-
                             <div class="ctv_title"><?= $subCategory->sub_category ?></div>
-                            <div class="ctv_count"><?= $subCategory->getCountSubcategory() ?></div>
+                            <div class="ctv_count"><?= $subCategory->getCountSubcategoryItems() ?></div>
                         </div>
                         <div class="category_change">
-                            <?php foreach ($subCategory->getSubcategoriesBrandSorted() as $subCategoryByBrand): ?>
+
+                            <?php foreach ($subCategory->getSubcategoriesBrandSorted() as $brand): ?>
                                 <div class="category_value">
                                     <input class='checkbox_value' checked="checked" type="checkbox" id="value1">
-                                    <label for="value1"><?= Html::a(Html::encode($subCategoryByBrand->getSubCategoryBrandName()->brand_name), \yii\helpers\Url::to(['/categories/subcategories/brand-choice', 'category_id' => $subCategoryByBrand->category_id, 'brand_id' => $subCategoryByBrand->brand_id, 'subcategory_id' => $subCategoryByBrand->id])) ?></label>
+                                    <label for="value1"><?= Html::a(Html::encode($brand->getBrand()->brand_name), ['/brands/brand/brand-sorted', 'category_id' => $brand->category_id, 'brand_id' => $brand->brand_id, 'subcategory_id' => $brand->subcategory_id], ['class' => 'selected_ajax']) ?></label>
                                 </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
-
                 <div class="category_littre">
                     <div class="category_visible">
                         <div class="ctv_title">Фильтр по литражу</div>
@@ -94,41 +96,30 @@ $this->params['breadcrumbs'][] = $category->category;
                         <div class="brand_button_text">Фильтр по брендам</div>
                         <div class="brand_button_close"><img src="/img/close-filter.png" alt=""></div>
                     </div>
-                    <div class="brand_filter_name">
-                        <div class="brand_list brand_gaz">
-                            <input type="checkbox" name=''>
-                        </div>
-                        <div class="brand_list brand_belarus">
-                            <input type="checkbox" name=''>
-                        </div>
-                        <div class="brand_list brand_maz">
-                            <input type="checkbox" name=''>
-                        </div>
-                        <div class="brand_list brand_uaz">
-                            <input type="checkbox" name=''>
-                        </div>
-                        <div class="brand_list brand_paz">
-                            <input type="checkbox" name=''>
-                        </div>
-                    </div>
-                </div>
-                <div class="main_catalogue">
 
-                    <?php foreach ($subCategoryBrandSorted as $product): ?>
+                    <?= BrandList::widget(['categoryId' => $category->id]); ?>
+                </div>
+                <?php Pjax::begin(['clientOptions' => ['method' => 'POST'], //тип запроса
+                    'enablePushState' => false, //обновлять url
+                    'timeout' => 3000, //время выполнения запроса
+                    'linkSelector' => '.selected_ajax',
+                ]); ?>
+                <div class="main_catalogue">
+                    <?php foreach ($subcategoryProductList as $subCategory): ?>
                         <div class="catalogue_item">
-                            <div class="ct_image"><?= Html::img($product->getImage(), ['alt' => 'noIimg']) ?></div>
+                            <div class="ct_image"><?= Html::img($subCategory->getImage(), ['alt' => 'img']) ?></div>
                             <div class="catalogue_descr">
-                                <p><?= Html::encode($product->getSubCategoryName()->sub_category); ?>
-                                </p>
+                                <p><?= Html::encode($subCategory->getSubCategory()->sub_category) ?></p>
                                 <p>от 10 000 грн</p>
                             </div>
                             <div class="catalogue_button"><a href="#">Детальнее</a></div>
                         </div>
                     <?php endforeach; ?>
                 </div>
+                <?php Pjax::end(); ?>
             </div>
-
         </div>
     </section>
+
 </main>
 

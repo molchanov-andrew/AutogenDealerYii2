@@ -2,10 +2,10 @@
 
 namespace frontend\modules\categories\controllers;
 
+use Yii;
 use common\models\Categories;
-use common\models\Products;
 use common\models\Bus;
-use yii\helpers\Html;
+use common\models\SubCategory;
 
 /**
  * Class SubcategoriesController
@@ -41,8 +41,12 @@ class SubcategoriesController extends \yii\web\Controller
         }
         return $this->render('subcategory', ['category' => $category, 'subCategoryBrandSorted' => $subCategoryBrandSorted,]);
     }
-public function getProductItems()
-{
-   return;
-}
+
+    public function actionSubcategory($categoryId, $subcategoryId)
+    {
+        $category = Categories::find($categoryId)->one();
+        $model = Yii::$app->choosetable->chooseProductTable($categoryId);
+        $subcategoryProductList = $model->getSubcategoryProductList($categoryId, $subcategoryId);
+        return $this->render('subcategory', ['subcategoryProductList'=>$subcategoryProductList, 'category'=>$category]);
+    }
 }

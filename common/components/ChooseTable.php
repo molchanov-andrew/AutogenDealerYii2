@@ -10,6 +10,7 @@ class ChooseTable extends Component
 {
     public function chooseProductTable($category_id)
     {
+
         $category = Categories::findOne(['id' => $category_id]);
 
         $tableName = $category->category_alter;

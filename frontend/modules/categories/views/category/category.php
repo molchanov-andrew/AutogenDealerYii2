@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $category->category;
                             <?php foreach ($subCategory->getSubcategoriesBrandSorted() as $brand): ?>
                                 <div class="category_value">
                                     <input class='checkbox_value' checked="checked" type="checkbox" id="value1">
-                                    <label for="value1"><?= Html::a(Html::encode($brand->getBrand()->brand_name), Url::to(['/brands/brand/brand-sorted', 'category_id' => $brand->category_id, 'brand_id' => $brand->brand_id, 'subcategory_id' => $brand->subcategory_id])) ?></label>
+                                    <label for="value1"><?= Html::a(Html::encode($brand->getBrand()->brand_name), ['/brands/brand/brand-sorted', 'category_id' => $brand->category_id, 'brand_id' => $brand->brand_id, 'subcategory_id' => $brand->subcategory_id], ['class' => 'selected_ajax']) ?></label>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -95,9 +95,14 @@ $this->params['breadcrumbs'][] = $category->category;
                         <div class="brand_button_text">Фильтр по брендам</div>
                         <div class="brand_button_close"><img src="/img/close-filter.png" alt=""></div>
                     </div>
-                    <?= BrandList::widget(); ?>
-                </div>
 
+                    <?= BrandList::widget(['categoryId' => $category->id]); ?>
+                </div>
+                <?php Pjax::begin(['clientOptions' => ['method' => 'POST'], //тип запроса
+                    'enablePushState' => false, //обновлять url
+                    'timeout' => 3000, //время выполнения запроса
+                    'linkSelector' => '.selected_ajax',
+                    ]); ?>
                 <div class="main_catalogue">
                     <?php foreach ($category->getSubCategoriesList() as $subCategory): ?>
                         <div class="catalogue_item">
@@ -110,6 +115,7 @@ $this->params['breadcrumbs'][] = $category->category;
                         </div>
                     <?php endforeach; ?>
                 </div>
+                <?php Pjax::end(); ?>
             </div>
         </div>
     </section>
