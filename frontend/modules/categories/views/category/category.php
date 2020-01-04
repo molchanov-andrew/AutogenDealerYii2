@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $category->category;
     <section class="sidebar_and_catalogue">
         <div class="wrapper">
             <aside class="sidebar">
+
                 <?php foreach ($category->getSubCategoriesList() as $subCategory): ?>
                     <div class="categories_catalogue">
                         <div class="category_visible">

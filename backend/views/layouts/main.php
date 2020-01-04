@@ -48,7 +48,8 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Брэнд', 'url' => ['/brand/index']];
         $menuItems[] = ['label' => 'Категория', 'url' => ['/category/index']];
         $menuItems[] = ['label' => 'Подкатегория', 'url' => ['/subcategory/index']];
-        $menuItems[] = ['label' => 'Товар', 'url' => ['/product/index']];
+        $menuItems[] = ['label' => 'Автобусы', 'url' => ['/bus/index']];
+        $menuItems[] = ['label' => 'Грузовые автомобили', 'url' => ['/truck/index']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

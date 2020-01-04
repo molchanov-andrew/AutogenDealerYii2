@@ -44,7 +44,8 @@ class SubcategoriesController extends \yii\web\Controller
 
     public function actionSubcategory($categoryId, $subcategoryId)
     {
-        $category = Categories::find($categoryId)->one();
+        $category = Categories::findOne($categoryId);
+
         $model = Yii::$app->choosetable->chooseProductTable($categoryId);
         $subcategoryProductList = $model->getSubcategoryProductList($categoryId, $subcategoryId);
         return $this->render('subcategory', ['subcategoryProductList'=>$subcategoryProductList, 'category'=>$category]);

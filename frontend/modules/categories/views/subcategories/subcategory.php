@@ -13,6 +13,7 @@ $this->title = 'Сategory';
 
 /** @var $category common\models\Categories
  */
+
 $this->params['breadcrumbs'][] = $category->category;
 ?>
 
@@ -105,14 +106,14 @@ $this->params['breadcrumbs'][] = $category->category;
                     'linkSelector' => '.selected_ajax',
                 ]); ?>
                 <div class="main_catalogue">
-                    <?php foreach ($subcategoryProductList as $subCategory): ?>
+                    <?php foreach ($subcategoryProductList as $product): ?>
                         <div class="catalogue_item">
-                            <div class="ct_image"><?= Html::img($subCategory->getImage(), ['alt' => 'img']) ?></div>
+                            <div class="ct_image"><?= Html::img($product->getImage(), ['alt' => 'img']) ?></div>
                             <div class="catalogue_descr">
-                                <p><?= Html::encode($subCategory->getSubCategory()->sub_category) ?></p>
-                                <p>от 10 000 грн</p>
+                                <p><?= Html::encode($product->name) ?></p>
+                                <p>от <?= Html::encode($product->price) ?></p>
                             </div>
-                            <div class="catalogue_button"><a href="#">Детальнее</a></div>
+                            <div class="catalogue_button"><a href="/product/">Детальнее</a></div>
                         </div>
                     <?php endforeach; ?>
                 </div>

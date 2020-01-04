@@ -5,6 +5,7 @@ namespace common\components;
 use yii\base\Component;
 use common\models\Categories;
 use common\models\Bus;
+use common\models\Truck;
 
 class ChooseTable extends Component
 {
@@ -30,8 +31,11 @@ class ChooseTable extends Component
             case 'SpecialTech':
                 $model = new SpecialTech();
                 break;
+            case 'Truck':
+                $model = new Truck();
+                break;
         }
-        return  $model;
+        return $model;
 
-}
+    }
 }

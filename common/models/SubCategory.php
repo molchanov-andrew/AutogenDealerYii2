@@ -65,5 +65,9 @@ class SubCategory extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Categories::class, ['id' => 'category_id'])->one();
     }
+    public function getBrand()
+    {
+        return $this->hasOne(Brand::class, ['id'=>'brand_id'])->one();
+    }
 
 }

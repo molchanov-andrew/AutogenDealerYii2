@@ -3,7 +3,7 @@
 namespace common\models;
 
 use Yii;
-use common\models\Categories;
+
 /**
  * This is the model class for table "bus".
  *
@@ -76,6 +76,10 @@ class Bus extends \yii\db\ActiveRecord
     public function getSubCategory()
     {
         return $this->hasOne(SubCategory::class, ['id' => 'subcategory_id'])->one();
+    }
+    public function getCategory()
+    {
+        return $this->hasOne(Categories::class, ['id' => 'category_id'])->one();
     }
     public function getBrand()
     {

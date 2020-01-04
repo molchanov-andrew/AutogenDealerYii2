@@ -20,6 +20,9 @@ return [
         'categories' => [
             'class' => 'frontend\modules\categories\Module',
         ],
+        'product' => [
+            'class' => 'frontend\modules\product\Module',
+        ],
     ],
     'components' => [
         'request' => [

@@ -14,6 +14,9 @@ return [
         ],
         'choosetable' =>[
             'class' => 'common\components\ChooseTable'
+        ],
+        'resizeimage' =>[
+            'class' => 'common\components\ResizeImage'
         ]
     ],
 ];
